@@ -1,0 +1,172 @@
+{
+  "datasets": [
+    {
+      "name": "5de699b9",
+      "displayName": "silverbusiness1",
+      "queryLines": [
+        "SELECT\r\n",
+        "b.name,\r\n",
+        "b.city,\r\n",
+        "b.state,\r\n",
+        "AVG(r.stars) as avg_rating,\r\n",
+        "COUNT(r.review_id) as review_count\r\n",
+        "FROM workspace.default.silverbusiness1 b\r\n",
+        "JOIN workspace.default.silverreview1 r ON b.business_id = r.business_id\r\n",
+        "GROUP BY b.name, b.city, b.state\r\n",
+        "HAVING COUNT(r.review_id) > 100\r\n",
+        "ORDER BY review_count \r\n",
+        "LIMIT 20;"
+      ]
+    },
+    {
+      "name": "b2c31304",
+      "displayName": "silverreview_partitioned",
+      "queryLines": [
+        "SELECT * FROM workspace.default.silverreview_partitioned"
+      ]
+    },
+    {
+      "name": "1a0e0727",
+      "displayName": "goldbusiness_analytics",
+      "queryLines": [
+        "SELECT * FROM workspace.default.goldbusiness_analytics"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "102a760d",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "48cb3169",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5de699b9",
+                  "fields": [
+                    {
+                      "name": "state",
+                      "expression": "`state`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showDescription": false
+              },
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "state",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 4,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "00a9d1f7",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "fc8b0092",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
